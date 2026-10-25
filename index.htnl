@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="MUEEN.STORE - Digital App Marketplace">
+<title>MUEEN.STORE — Digital Marketplace</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#d4af37;--gold2:#ffe58a;--line:rgba(212,175,55,.25)}
+body{background:radial-gradient(circle at 80% 0%,rgba(212,175,55,.14),transparent 28%),#050505;color:#fff;font-family:Arial,sans-serif;min-height:100vh}
+header{position:sticky;top:0;z-index:99;background:rgba(5,5,5,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{max-width:1200px;height:70px;margin:auto;padding:0 18px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px}
+.logoBox{width:42px;height:42px;border:1px solid var(--gold);border-radius:13px;display:grid;place-items:center;color:var(--gold2);font-size:22px;font-weight:bold}
+.logoName{font-size:22px;font-weight:900;letter-spacing:1px}
+.logoName span{color:var(--gold2)}
+.navFounder{font-size:10px;color:var(--gold2);border:1px solid var(--line);padding:9px 12px;border-radius:30px}
+.hero{max-width:1000px;margin:auto;padding:60px 18px 35px;text-align:center}
+.badge{display:inline-block;padding:8px 15px;border:1px solid var(--line);border-radius:30px;color:var(--gold2);font-size:11px;letter-spacing:1px}
+.hero h1{margin-top:22px;font-size:clamp(43px,9vw,78px);line-height:1.05;letter-spacing:-2px}
+.gold{background:linear-gradient(110deg,#9b7210,#fff1a8,#d4af37,#fff3ae);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:620px;margin:20px auto;color:#999;line-height:1.7;font-size:14px}
+.search{max-width:650px;margin:auto}
+.search input{width:100%;height:52px;border-radius:15px;border:1px solid var(--line);background:#101010;color:white;outline:none;padding:0 17px;font-size:14px}
+.search input:focus{border-color:var(--gold)}
+.section{max-width:1200px;margin:auto;padding:24px 18px}
+.title{margin-bottom:18px}.title h2{font-size:22px}.title p{color:#777;font-size:11px;margin-top:6px}
+.universe,.apps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.planet{padding:20px;min-height:130px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(212,175,55,.09),#0b0b0b);cursor:pointer;transition:.2s}
+.planet:hover,.app:hover{transform:translateY(-3px);border-color:var(--gold)}
+.planetIcon{font-size:32px;margin-bottom:12px}.planet h3{font-size:14px}.planet p{color:#777;font-size:10px;margin-top:6px}
+.filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:20px}.filters::-webkit-scrollbar{display:none}
+.filter{flex:none;border:1px solid #292929;background:#101010;color:#aaa;padding:10px 14px;border-radius:30px;font-size:11px;cursor:pointer}
+.filter.active,.filter:hover{color:var(--gold2);border-color:var(--gold);background:rgba(212,175,55,.08)}
+.app{min-width:0;background:linear-gradient(145deg,#121212,#090909);border:1px solid #242424;border-radius:20px;padding:15px;transition:.2s}
+.appTop{display:flex;gap:12px;align-items:center}
+.icon{width:55px;height:55px;flex:none;border-radius:16px;display:grid;place-items:center;font-size:29px;background:linear-gradient(145deg,#292929,#0b0b0b);border:1px solid rgba(212,175,55,.3)}
+.app h3{font-size:13px;overflow-wrap:anywhere}.dev{color:#777;font-size:10px;margin-top:5px}.rating{color:var(--gold2);font-size:10px;margin-top:7px}
+.desc{color:#888;font-size:11px;line-height:1.6;margin:14px 0;min-height:52px}
+.appBottom{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.view{border:1px solid var(--line);background:rgba(212,175,55,.07);color:var(--gold2);padding:10px 12px;border-radius:10px;font-size:10px;cursor:pointer}
+.view:hover{background:rgba(212,175,55,.18)}
+.download{display:block;text-decoration:none;text-align:center;background:linear-gradient(110deg,#9b7210,#ffe58a);color:#080808;font-weight:bold;padding:11px 13px;border-radius:10px;font-size:11px;flex:1}
+.empty{display:none;text-align:center;padding:30px;color:#888}
+.feature{padding:28px;border-radius:24px;border:1px solid var(--line);background:radial-gradient(circle at 90% 20%,rgba(212,175,55,.16),transparent 30%),#0b0b0b}
+.feature small{color:var(--gold2);letter-spacing:2px}.feature h2{margin:12px 0;font-size:27px}.feature p{color:#888;font-size:12px;line-height:1.8;max-width:650px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.tags span{border:1px solid #292929;padding:8px 10px;border-radius:10px;color:#aaa;font-size:10px}
+.founder{text-align:center;border:1px solid var(--line);border-radius:24px;padding:35px 20px;background:radial-gradient(circle,rgba(212,175,55,.13),transparent 55%),#0a0a0a}
+.crown{font-size:38px}.founder h2{margin:12px 0;font-size:29px}.founder h2 span{color:var(--gold2)}.founder p{color:#888;font-size:12px}
+footer{border-top:1px solid #202020;margin-top:30px;padding:28px;text-align:center;color:#777;font-size:11px;line-height:1.8}
+.modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);padding:16px;align-items:center;justify-content:center}
+.modal.show{display:flex}
+.box{width:min(550px,100%);max-height:90vh;overflow:auto;background:#0b0b0b;border:1px solid var(--line);border-radius:24px;padding:22px;position:relative}
+.close{position:absolute;top:13px;right:13px;width:36px;height:36px;border-radius:50%;background:#151515;border:1px solid #333;color:#fff;font-size:22px;cursor:pointer}
+.modalTop{display:flex;align-items:center;gap:15px;padding-right:40px}
+.bigIcon{width:72px;height:72px;flex:none;border-radius:18px;display:grid;place-items:center;font-size:36px;background:#181818;border:1px solid var(--line)}
+.modal h2{font-size:23px;overflow-wrap:anywhere}.modalDesc{color:#aaa;line-height:1.8;font-size:12px;margin:20px 0}
+.info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.info div{background:#111;border:1px solid #252525;border-radius:12px;padding:12px;min-width:0}
+.info small{display:block;color:#777;font-size:9px;margin-bottom:6px}.info strong{font-size:11px;color:#eee;overflow-wrap:anywhere}
+.modalActions{display:flex;gap:10px;margin-top:16px}.modalActions a{flex:1}
+.modalNote{margin-top:15px;padding:12px;border:1px solid var(--line);border-radius:12px;color:#aaa;font-size:11px;line-height:1.7;text-align:center}
+@media(max-width:900px){.universe,.apps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.navFounder{display:none}.hero{padding-top:45px}.hero h1{font-size:47px}.section{padding:22px 14px}.feature h2{font-size:24px}}
+@media(max-width:370px){.universe,.apps{grid-template-columns:1fr}.hero h1{font-size:40px}}
+</style>
+</head>
+<body>
+<header><nav class="nav">
+  <div class="logo"><div class="logoBox">M</div><div class="logoName">MUEEN<span>.STORE</span></div></div>
+  <div class="navFounder">FOUNDED BY MUEEN</div>
+</nav></header>
+
+<section class="hero">
+ <div class="badge">✦ PREMIUM DIGITAL MARKETPLACE</div>
+ <h1>Discover<br><span class="gold">Your Digital World.</span></h1>
+ <p>Explore apps, entertainment and useful digital experiences — all in one place at MUEEN.STORE.</p>
+ <div class="search"><input id="search" type="search" placeholder="Search apps, categories..." aria-label="Search apps"></div>
+</section>
+
+<section class="section">
+ <div class="title"><h2>🌌 App Universe</h2><p>Choose your digital planet</p></div>
+ <div class="universe">
+  <div class="planet" onclick="choose('Tools')"><div class="planetIcon">⚙️</div><h3>Utility Planet</h3><p>Useful digital tools</p></div>
+  <div class="planet" onclick="choose('Music')"><div class="planetIcon">🎵</div><h3>Music Planet</h3><p>Music discovery</p></div>
+  <div class="planet" onclick="choose('Entertainment')"><div class="planetIcon">🎬</div><h3>Entertainment Planet</h3><p>Video and stories</p></div>
+  <div class="planet" onclick="choose('All')"><div class="planetIcon">🌐</div><h3>All Apps</h3><p>Explore the collection</p></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="title"><h2>🔥 Explore Apps</h2><p id="counter">5 Apps</p></div>
+ <div class="filters">
+  <button class="filter active" data-category="All" onclick="choose('All')">All</button>
+  <button class="filter" data-category="Tools" onclick="choose('Tools')">⚙️ Tools</button>
+  <button class="filter" data-category="Music" onclick="choose('Music')">🎵 Music</button>
+  <button class="filter" data-category="Entertainment" onclick="choose('Entertainment')">🎬 Entertainment</button>
+  <button class="filter" data-category="Video" onclick="choose('Video')">▶️ Video</button>
+ </div>
+ <div class="apps" id="apps"></div>
+ <div class="empty" id="empty">No apps found. Try another search.</div>
+</section>
+
+<section class="section"><div class="feature">
+ <small>👑 MUEEN'S SELECTION</small><h2>Your Next Digital Discovery.</h2>
+ <p>MUEEN.STORE is a digital marketplace concept for discovering apps through a simple, premium interface.</p>
+ <div class="tags"><span>⚡ Fast Interface</span><span>📱 Mobile Friendly</span><span>🔎 Easy Search</span><span>✨ Premium Design</span></div>
+</div></section>
+
+<section class="section"><div class="founder">
+ <div class="crown">👑</div><h2>Founded by <span>MUEEN</span></h2><p>MUEEN.STORE — Your Digital Marketplace</p>
+</div></section>
+<footer><strong>MUEEN.STORE</strong> © 2026<br>Founded by MUEEN</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mName">
+ <div class="box">
+  <button class="close" onclick="closeModal()" aria-label="Close">×</button>
+  <div class="modalTop"><div class="bigIcon" id="mIcon">📱</div><div><h2 id="mName">App</h2><div class="dev" id="mDev"></div><div class="rating" id="mRating"></div></div></div>
+  <p class="modalDesc" id="mDesc"></p>
+  <div class="info">
+   <div><small>VERSION</small><strong id="mVersion"></strong></div>
+   <div><small>SIZE</small><strong id="mSize"></strong></div>
+   <div><small>CATEGORY</small><strong id="mCategory"></strong></div>
+   <div><small>MODE</small><strong id="mMode"></strong></div>
+   <div><small>ADS</small><strong id="mAds"></strong></div>
+   <div><small>PRIVACY</small><strong id="mPrivacy"></strong></div>
+  </div>
+  <div class="modalActions"><a class="download" id="mDownload" href="#" target="_blank" rel="noopener noreferrer">DOWNLOAD APK ↗</a></div>
+  <div class="modalNote">Download pages are hosted externally. Check the publisher and scan APK files before installing.</div>
+ </div>
+</div>
+
+<script>
+const appsData = [
+ {
+  name:"MovieBox",icon:"🎬",developer:"MovieBox",category:"Entertainment",
+  version:"4.0.03.0930.03",size:"Varies",rating:"Not verified",mode:"Online",
+  ads:"Unverified",privacy:"Unverified",
+  desc:"Video entertainment application. Verify the publisher and file before installing.",
+  downloadUrl:"https://www.mediafire.com/file/z8o5g2wea7k8dy9/moviebox_v4.0.03.0930.03-an1.ca.apk/file"
+ },
+ {
+  name:"Pocket FM",icon:"🎧",developer:"Pocket FM",category:"Entertainment",
+  version:"9.6.0",size:"Varies",rating:"Not verified",mode:"Online",
+  ads:"Unverified",privacy:"Unverified",
+  desc:"Audio stories, narrated series and entertainment.",
+  downloadUrl:"https://www.mediafire.com/file/33dz4dnaooa4kpy/pocket-fm_v9.6.0-an1.ca.apk/file"
+ },
+ {
+  name:"Shazam",icon:"🎵",developer:"Shazam",category:"Music",
+  version:"16.63.0",size:"Varies",rating:"Not verified",mode:"Online",
+  ads:"Unverified",privacy:"Unverified",
+  desc:"Discover music and identify songs playing around you.",
+  downloadUrl:"https://www.mediafire.com/file/gson7ymsy01hkzn/shazam_v16.63.0-an1.ca.apk/file"
+ },
+ {
+  name:"Soda Reels",icon:"📺",developer:"Soda Reels",category:"Entertainment",
+  version:"3.7.0",size:"Varies",rating:"Not verified",mode:"Online",
+  ads:"Unverified",privacy:"Unverified",
+  desc:"Short-form video entertainment and stories.",
+  downloadUrl:"https://www.mediafire.com/file/kj7a57h5qpgs9kp/soda-reels_v3.7.0-an1.ca.apk/file"
+ },
+ {
+  name:"YouTube",icon:"▶️",developer:"Google",category:"Video",
+  version:"21.33.322",size:"Varies",rating:"Not verified",mode:"Online",
+  ads:"Unverified",privacy:"Unverified",
+  desc:"Watch videos, explore channels and discover creators.",
+  downloadUrl:"https://www.mediafire.com/file/hqjz1c54syapst2/youtube_v21.33.322-an1.ca.apk/file"
+ }
+];
+
+let current="All";
+const grid=document.getElementById("apps");
+const search=document.getElementById("search");
+const modal=document.getElementById("modal");
+
+function safe(value){
+ return String(value).replaceAll("&","&amp;").replaceAll("<","&lt;")
+ .replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+
+function render(){
+ const q=search.value.toLowerCase().trim();
+ const results=appsData.filter(app=>{
+  const categoryOK=current==="All"||app.category===current;
+  const text=(app.name+" "+app.developer+" "+app.category+" "+app.desc).toLowerCase();
+  return categoryOK&&text.includes(q);
+ });
+ grid.innerHTML="";
+ document.getElementById("counter").textContent=results.length+" Apps";
+ document.getElementById("empty").style.display=results.length?"none":"block";
+
+ results.forEach(app=>{
+  const card=document.createElement("article");
+  card.className="app";
+  card.innerHTML=`
+   <div class="appTop">
+    <div class="icon">${safe(app.icon)}</div>
+    <div><h3>${safe(app.name)}</h3><div class="dev">${safe(app.developer)}</div><div class="rating">✦ ${safe(app.category)}</div></div>
+   </div>
+   <div class="desc">${safe(app.desc)}</div>
+   <div class="appBottom">
+    <button class="view detailsBtn" type="button">DETAILS</button>
+    <a class="download" href="${safe(app.downloadUrl)}" target="_blank" rel="noopener noreferrer">DOWNLOAD ↗</a>
+   </div>`;
+  card.querySelector(".detailsBtn").addEventListener("click",()=>details(app.name));
+  grid.appendChild(card);
+ });
+}
+
+function choose(category){
+ current=category;
+ document.querySelectorAll(".filter").forEach(el=>el.classList.toggle("active",el.dataset.category===category));
+ render();
+ document.getElementById("apps").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function details(name){
+ const app=appsData.find(item=>item.name===name);
+ if(!app)return;
+ document.getElementById("mIcon").textContent=app.icon;
+ document.getElementById("mName").textContent=app.name;
+ document.getElementById("mDev").textContent=app.developer;
+ document.getElementById("mRating").textContent="Category: "+app.category;
+ document.getElementById("mDesc").textContent=app.desc;
+ document.getElementById("mVersion").textContent=app.version;
+ document.getElementById("mSize").textContent=app.size;
+ document.getElementById("mCategory").textContent=app.category;
+ document.getElementById("mMode").textContent=app.mode;
+ document.getElementById("mAds").textContent=app.ads;
+ document.getElementById("mPrivacy").textContent=app.privacy;
+ document.getElementById("mDownload").href=app.downloadUrl;
+ modal.classList.add("show");
+ document.body.style.overflow="hidden";
+ document.querySelector(".close").focus();
+}
+function closeModal(){modal.classList.remove("show");document.body.style.overflow=""}
+search.addEventListener("input",render);
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+render();
+</script>
+</body>
+</html>
